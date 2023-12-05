@@ -56,6 +56,19 @@ const getSum = (str) => {
   return sumOfCalibrationValues;
 };
 
+const converWordsToNumbers = (str) => {
+  const wordsAsNumbersKeys = Object.keys(wordsAsNumbers);
+  let newStr = str;
+  for (let i = 0; i < wordsAsNumbersKeys.length - 1; i++) {
+    const stringifiedNum = wordsAsNumbersKeys[i];
+    const stringifiedNumRegex = new RegExp(stringifiedNum, "gi");
+    newStr = newStr.replace(
+      stringifiedNumRegex,
+      wordsAsNumbers[stringifiedNum]
+    );
+  }
+};
+
 // Testing the Data
 
 const fs = require("fs");
@@ -71,5 +84,6 @@ const textData = fs.readFileSync(
     return data;
   }
 );
+const modifiedTextData = converWordsToNumbers(textData);
 const calibrationValuesSum = getSum(textData);
 console.log(calibrationValuesSum);
