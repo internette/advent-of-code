@@ -12,7 +12,7 @@ const wordsAsNumbers = {
 };
 
 const getAllLines = (str) => {
-  const lines = str.split(/\/n/g);
+  const lines = str.split(/\n/g);
   const formattedLines = lines.map((line) => line.trim());
   return formattedLines;
 };
@@ -21,7 +21,7 @@ const getIndices = (str) => {
   const indices = [];
   for (let i = 0; i < str.length; i++) {
     const char = str[i];
-    if (Number(char) !== NaN) {
+    if (Number(char)) {
       indices.push(i);
     }
   }
@@ -30,7 +30,10 @@ const getIndices = (str) => {
 
 const getCalibrationValue = (str) => {
   const indices = getIndices(str);
-  return indices[0] + indices[indices.length - 1];
+  const firstIndex = indices[0];
+  const lastIndex =
+    indices.length <= 1 ? indices[0] : indices[indices.length - 1];
+  return String(firstIndex) + String(lastIndex);
 };
 
 const getCalibrationValues = (str) => {
