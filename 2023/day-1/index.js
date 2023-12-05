@@ -33,7 +33,10 @@ const getCalibrationValue = (str) => {
   const firstIndex = indices[0];
   const lastIndex =
     indices.length <= 1 ? indices[0] : indices[indices.length - 1];
-  return String(firstIndex) + String(lastIndex);
+  const firstValue = str[firstIndex];
+  const lastValue = str[lastIndex];
+  const calibrationValue = String(firstValue) + String(lastValue);
+  return calibrationValue;
 };
 
 const getCalibrationValues = (str) => {
