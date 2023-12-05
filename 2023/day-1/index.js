@@ -47,5 +47,23 @@ const getSum = (str) => {
   const sumOfCalibrationValues = calibrationValues.reduce((a, b) => {
     return a + b;
   });
-  return sumOfCalibrationValues(str);
+  return sumOfCalibrationValues;
 };
+
+// Testing the Data
+
+const fs = require("fs");
+const path = require("path");
+const textData = fs.readFileSync(
+  path.join(__dirname, "mockData.txt"),
+  "utf8",
+  (err, data) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    return data;
+  }
+);
+const calibrationValuesSum = getSum(textData);
+console.log(calibrationValuesSum);
